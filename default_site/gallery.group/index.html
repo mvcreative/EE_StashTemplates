@@ -1,0 +1,52 @@
+{if "{spurwing_site_version}" == "mobile"}
+{embed="Templates/mobile-subpage_Generic" }
+  
+{exp:stash:set name="extraStylesTop"}
+<style>
+.owl-item img {
+	width: 100%;
+}
+</style>  
+{/exp:stash:set}
+
+{exp:stash:set name="extraScriptsTop"}
+	<script src="/js/jquery-1.10.2.min.js"></script>
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/js/owl-carousel/owl.carousel.css">
+    <!-- Default Theme -->
+    <link rel="stylesheet" type="text/css" href="/js/owl-carousel/owl.theme-gallery.css">
+    <!-- Include js plugin -->
+    <script src="/js/owl-carousel/owl.carousel.js"></script>
+{/exp:stash:set}
+
+{exp:stash:set name="mobileContent"}
+ <div class="spacer-20"></div>
+<div id="owl-gallery" class="owl-carousel">
+{exp:channel:entries channel="photo-galleries" limit="1" entry_url="mobile-gallery" dynamic="no"}
+{photo_gallery_photos}
+<div>
+	<img src="{url}" alt=""/>
+</div>    
+{/photo_gallery_photos}
+
+{/exp:channel:entries}
+</div><!-- /header-main-container-->
+{/exp:stash:set}  
+
+{exp:stash:set name="extraScriptsBottom"}
+<script>
+$(document).ready(function(){
+	/* Slider */
+	$("#owl-gallery").owlCarousel({
+		  navigation : false, // Show next and prev buttons
+		  slideSpeed : 300,
+		  paginationSpeed : 400,
+		  singleItem:true
+	});
+}); // end docuyment.ready
+</script>
+{/exp:stash:set}     
+{if:else}
+	
+
+{/if}
