@@ -1,0 +1,166 @@
+{embed="Templates/generic_bootstrap }
+
+{exp:stash:set name="topExtraScripts"}
+	<script src="/js/jquery-1.11.0.min.js"></script>
+{/exp:stash:set}
+
+{exp:stash:set name="topExtraStyles"}
+<style>
+.navbar-default {
+ background-color: transparent;
+  border: 0;
+}
+.header-container {
+  background-color: #eae3de;
+  min-height: 108px;
+  width: 100%;
+   position: relative; 
+  /* z-index: 10; */
+  box-shadow: 0px 2px 12px #333;
+}
+.mainmenu-container {
+	position:relative;
+}
+	.documentsContainer {
+		
+	}
+	.documents-item {
+		width:200px;
+		height:300px;
+		float:left;
+		position:relative;
+	}
+	.document-link {
+		opacity:0;
+	}
+	.outter-box {
+		background-color:#eae3de;
+		width:100%;
+		height:100%;
+		position:absolute;
+		z-index:0;
+		opacity:0;
+	}
+	.document-thumbnail {
+		/*
+		height:50%;
+		width:50%;
+		*/
+		height:150px;
+		width:100px;
+		position:absolute;
+		/*background-color:#3D1B1B;*/
+		margin:auto;
+		z-index:12;
+		top:40px;
+		left:50px;
+	}
+	.document-thumbnail img {
+		/*max-width:100px;
+		max-height:150px;*/
+		border:2px solid brown;
+	}
+	.document-thumbnail a{
+		text-decoration:none;
+		border: none;
+	}
+	.document-title {
+		padding:0px 10px;
+		position:absolute;
+		z-index:12;
+		bottom:12px;
+		height:42px;
+		line-height:1.2em;
+	}
+</style>
+{/exp:stash:set}
+
+
+
+{exp:stash:set name="titlePage"}
+{if segment_2}
+	{exp:channel:entries channel="{segment_1}" limit="1" status="Open"}{title}{/exp:channel:entries}
+{if:else}
+	{exp:channel:entries channel="{segment_1}" limit="1" status="Landing"}{title}{/exp:channel:entries}
+{/if}
+
+{/exp:stash:set}
+
+{exp:stash:set name="sideBar"}
+<ul class="side-menu">
+    <li class="first-item {if segment_2 == '' AND segment_1 =='about'}active{/if} "><a href="/about">About</a></li>
+    <li class="{if segment_2 == 'the-community'}active{/if}"><a href="/about/the-community">The Community</a></li>
+    <li class="last-item {if segment_2 == 'local-resources'}active{/if}"><a href="/about/local-resources">Local Resources</a></li>
+</ul>
+{/exp:stash:set}
+
+{exp:stash:set name="breadcrumb"}
+    <a href="/">Home</a> > {exp:channel:entries channel="{segment_1}" limit="1" status="Landing"  dynamic="no"}{title}{/exp:channel:entries}
+{/exp:stash:set}
+
+{exp:stash:set name="pageContent"}
+	{if segment_2} 
+    {exp:channel:entries channel="{segment_1}" limit="1" status="Open"  }
+        {page_content}
+         {if segment_2 == "local-resources"}
+        	<div class="documentsContainer">
+            	{extra_documents}
+            	<div class="documents-item">
+                	<div class="outter-box"></div>
+                    	<div class="document-thumbnail">
+                        	<a href="{extra_documents:document_file}" target="_blank"><img src="{extra_documents:document_thumbnail}" width="100%" height="100%"></a>
+                        </div>
+                        <div class="document-title">
+                        	<strong>{extra_documents:document_title}</strong><br>
+                            <span class="document-link"><a href="{extra_documents:document_file}" target="_blank">View</a></span>
+                        </div>
+                </div>                
+                {/extra_documents}
+            	            
+            </div>
+        {/if}
+    {/exp:channel:entries}
+    {if:else}
+    {exp:channel:entries channel="{segment_1}" limit="1" status="Landing"  }
+        {page_content}
+    {/exp:channel:entries}   
+    {/if}
+    
+    
+{/exp:stash:set}
+
+ 
+{exp:stash:set name="footerExtraScripts"}
+<script>
+	$(document).ready(function() {
+		 $(".documents-item").mouseenter(function (){
+			$(this).find(".document-thumbnail").animate({ 
+                    width: "140px",
+					height:"210px",
+					top:"20px",
+					left:"30px"
+                }, 100 );	 
+				$(this).find(".outter-box").animate({ 
+                    opacity: "1"
+                }, 100 );	
+				$(this).find(".document-title").css("color","#311604");
+				$(this).find(".document-link").css("opacity","1");
+		 }).mouseleave(function() {
+				$(this).find(".document-thumbnail").animate({ 
+                    width: "100px",
+					height:"150px",
+					top:"40px",
+					left:"50px"
+                }, 100 );	
+				$(this).find(".outter-box").animate({ 
+                    opacity: "0"
+                }, 100 );	
+				$(this).find(".document-title").css("color","#333"); 
+				$(this).find(".document-link").css("opacity","0");
+		  });
+				
+				
+				
+    });
+</script>   
+{/exp:stash:set}

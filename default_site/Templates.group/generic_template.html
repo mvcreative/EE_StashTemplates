@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SpurWing Challenge - HTML Secondary pages</title>
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    
+<script src="//use.typekit.net/psw1rbd.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="{stylesheet='_css/reset'}" />
+<link rel="stylesheet" type="text/css" media="all" href="{stylesheet='_css/main'}" />
+
+<style>
+
+</style>
+{exp:stash:get name='topExtraScripts'}
+{exp:stash:get name='topExtraStyles'}
+</head>
+
+<body class="subpage">
+	<div class="header-container">
+    	<div class="wrapper">
+            <div class="logo-container">
+                <a href="/" >
+                    <img src="/_img/spurwing-challenge-logo.png" width="178" height="80" alt="SpurWing Challenge Estates" style="padding-top:10px;"/>
+                </a>
+            </div><!-- /logo-container-->
+            
+            <div class="topmenu-container">
+            	{embed="_inc/main-nav" }
+            </div><!-- /topmenu-container-->
+        </div> <!-- /wrapper -->
+    </div><!-- /header-container--> 
+    <div class="main-wrapper wrapper {segment_1} " style="background-image:url(/images/uploads/section-images/{segment_1}.jpg);">
+        <div class="title-container">
+            <h1>{exp:stash:get name='titlePage'}</h1>
+        </div>
+        <div class="content-wrapper">
+        <div class="sidecolumn">
+            {exp:stash:get name='sideBar'}
+        </div>
+        <div class="maincolumn">
+        	<div class="breadcrumb">
+				{exp:stash:get name='breadcrumb'}
+            </div><!-- /breadcrumb-->
+            <div class="content-container">
+				{exp:stash:get name='pageContent'}
+            </div><!-- /content-container-->
+        </div>
+        <div class="clear"></div>
+        </div>
+    </div><!-- /main-wrapper wrapper-->
+<div class="footer-container">
+    	<div class="wrapper">
+            {embed="_inc/footer-address" }
+		</div><!-- /wrapper-->
+</div><!-- /footer-container-->
+{exp:stash:get name='footerExtraScripts'}
+</body>
+</html>

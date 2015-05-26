@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{site_name}</title>
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+{!--  Code for TypeKit
+<script src="//use.typekit.net/psw1rbd.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+--}
+
+<link rel="stylesheet" type="text/css" href="/_js/lib/slick/slick.css">
+<link rel="stylesheet" type="text/css" media="all" href="{stylesheet='_css/reset'}" />
+<link rel="stylesheet" type="text/css" media="all" href="{stylesheet='_css/main'}" />
+
+<script src="/_js/jquery-1.11.2.min.js"></script>
+<script src="/_js/lib/slick/slick.min.js"></script>
+
+<style>
+</style>
+</head>
+
+<body>
+<header class="hp-header">
+<div class="wrapper">
+<div class="logo-container">
+                <a href="/" >
+                    <img src="/_img/image.png"  alt="{site_name}" style="padding-top:10px;"/>
+                </a>
+            </div><!-- /logo-container-->
+            
+            <div class="topmenu-container">
+                {embed="_inc/main-nav" }
+            </div><!-- /topmenu-container-->
+</div><!-- /wrapper-->
+</header>
+<div class="slider">
+{exp:channel:entries channel="sliders" limit="4" status="HomePage" sort="asc" orderby="slider_order" }
+  <div class="slide1 " >
+  	<div class="slide" style="background-image:url({slide_image}{url}{/slide_image})">
+    <div class="wrapper">
+  		<div class="slideContent {slide_position}">
+            <div class="slideTitle"><span class="leftGraphic"></span>{slide_tagline}<span class="rightGraphic"></span></div>
+            <div class="slideText">{slide_text}</div>
+        </div><!-- /slideContent-->    
+    </div>
+    </div>
+  </div><!-- /slide1-->
+{/exp:channel:entries}
+
+</div>
+
+<div class="hp-footer-container">
+    	<div class="wrapper">
+            {embed="_inc/footer-address" }
+		</div><!-- /wrapper-->
+</div>
+<script>
+$(document).ready(function() {
+	// Slider
+	$('.slider').slick({
+	  dots: false,
+	  infinite: true,
+	  speed: 500,
+	  fade: true,
+	  slide: 'div',
+	  cssEase: 'linear',
+	  adaptiveHeight: true,
+	  autoplay: false,
+	  autoplaySpeed: 2000,
+	  arrows: false
+	});
+});
+
+
+</script>
+</body>
+</html>

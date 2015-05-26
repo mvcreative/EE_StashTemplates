@@ -1,0 +1,75 @@
+{!-- Contact Page --}
+{embed="Templates/generic_template}
+
+
+{exp:stash:set name="topExtraStyles"}
+<style>
+html>body {  
+min-height:100%;  
+height:auto;  
+height:100%; }
+input,
+textarea{
+	background-color: #311604;
+	border: 3px solid transparent;
+	padding: 4px;
+	color: #FFF;
+	box-shadow: 1px 1px 4px black;
+}
+input:focus,
+textarea:focus{
+	border: 3px solid #D5722F;
+	-webkit-appearance: none;
+
+
+}
+label.field_label {
+	color: #311604;
+	font-size: 1.2em;
+}
+input[type="submit"] {
+	cursor:pointer;
+	background-color:#311604;	
+	width:10em;
+}
+
+input[type="submit"]:hover{
+	background-color:#D5722F;
+
+}
+.content-container form p {
+	margin-bottom:0px;
+}
+</style>
+{/exp:stash:set}
+{exp:stash:set name="titlePage"}
+	{exp:channel:entries channel="forms" limit="1" status="Open"}{title}{/exp:channel:entries}
+
+{/exp:stash:set}
+
+{exp:stash:set name="sideBar"}
+<br>
+<br>
+<br>
+
+Contact Info?
+{/exp:stash:set}
+
+{exp:stash:set name="breadcrumb"}
+    <a href="/">Home</a> > Contact Us
+{/exp:stash:set}
+
+{exp:stash:set name="pageContent"}
+	{if last_segment == "thank-you"}
+    {exp:channel:entries channel="forms" limit="1" status="Open"  }
+		{form_thank_you_message}
+    {/exp:channel:entries}
+    {if:else}
+    {exp:channel:entries channel="forms" limit="1" status="Open"  }
+    	{form_leading_text}
+        {form composer_template_name="contact_form"}
+    {/exp:channel:entries}
+    {/if}
+{/exp:stash:set}
+   
+   
